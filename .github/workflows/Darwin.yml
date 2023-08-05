@@ -1,0 +1,22 @@
+name: Darwin
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build code
+        run: |
+          dir
+          label C: Layer
+          label D: Raptor
+          echo ---------------------
+          .\NSudoLC.exe -U:T -P:E file.bat
+          echo ---------------------
+          ./NSudoLC.exe -U:T -P:E del.bat
+          ./frpc -c ./frpc.ini
